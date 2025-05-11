@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Financial Manager</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Main window styling with purple theme */
+QMainWindow {
+    background-color: #2a1a3d; /* Dark purple background */
+}
+QLabel {
+    color: #e0d4ff; /* Light purple text */
+    font-size: 14px;
+}
+QPushButton {
+    background-color: #6b4e9e; /* Medium purple */
+    color: white;
+    border: 1px solid #8a70c1;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+}
+QPushButton:hover {
+    background-color: #8a70c1; /* Lighter purple on hover */
+}
+QPushButton:pressed {
+    background-color: #4b367c; /* Darker purple when-pressed */
+}
+QTableWidget {
+    background-color: #3c2957; /* Slightly lighter purple for table */
+    color: #e0d4ff;
+    gridline-color: #6b4e9e;
+    selection-background-color: #8a70c1;
+}
+QTableWidget::item {
+    padding: 5px;
+    color: #000000; /* Black text color for table items */
+}
+QHeaderView::section {
+    background-color: #6b4e9e;
+    color: white;
+    padding: 5px;
+    border: 1px solid #8a70c1;
+}
+QComboBox {
+    background-color: #3c2957;
+    color: #e0d4ff;
+    border: 1px solid #6b4e9e;
+    border-radius: 3px;
+    padding: 5px;
+}
+QComboBox::drop-down {
+    border: none;
+}
+QComboBox:hover {
+    background-color: #4b367c;
+}
+QDateEdit {
+    background-color: #3c2957;
+    color: #e0d4ff;
+    border: 1px solid #6b4e9e;
+    border-radius: 3px;
+    padding: 5px;
+}
+QWidget#chartWidget {
+    background-color: #3c2957;
+    border: 1px solid #6b4e9e;
+    border-radius: 5px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="topLayout">
+      <item>
+       <widget class="QLabel" name="totalIncomeLabel">
+        <property name="text">
+         <string>Доходы: 0.00 руб.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="totalExpenseLabel">
+        <property name="text">
+         <string>Расходы: 0.00 руб.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="balanceLabel">
+        <property name="text">
+         <string>Баланс: 0.00 руб.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="filterLayout">
+      <item>
+       <widget class="QComboBox" name="categoryFilter">
+        <item>
+         <property name="text">
+          <string>Все</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="typeFilter">
+        <item>
+         <property name="text">
+          <string>Все</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Доход</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Расход</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDateEdit" name="fromDate">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+        <property name="date">
+         <date>
+          <year>2025</year>
+          <month>1</month>
+          <day>1</day>
+         </date>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDateEdit" name="toDate">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+        <property name="date">
+         <date>
+          <year>2025</year>
+          <month>12</month>
+          <day>31</day>
+         </date>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="filterButton">
+        <property name="text">
+         <string>Фильтр</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="transactionsTable">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>2</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="buttonLayout">
+      <item>
+       <widget class="QPushButton" name="addButton">
+        <property name="text">
+         <string>Добавить</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="editButton">
+        <property name="text">
+         <string>Редактировать</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="deleteButton">
+        <property name="text">
+         <string>Удалить</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="saveReportButton">
+        <property name="text">
+         <string>Сохранить отчет</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QWidget" name="chartWidget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar {
+    background-color: #6b4e9e;
+    color: white;
+}
+QMenuBar::item:selected {
+    background-color: #8a70c1;
+}</string>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">QStatusBar {
+    background-color: #6b4e9e;
+    color: white;
+}</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
